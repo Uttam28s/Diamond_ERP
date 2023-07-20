@@ -213,7 +213,6 @@ const AddProduct = () => {
 
   return (
     <>
-      <Layout active='add-products'>
         {
           Object.keys(initialValue)?.length === 0 && id
             ? <Spinner size="large" />
@@ -268,7 +267,6 @@ const AddProduct = () => {
               />
             </CommonForm>
         }
-      </Layout>
     </>
   )
 }

@@ -148,7 +148,7 @@ const ProductList = () => {
   }
 
   return (
-    <Layout active='products-list'>
+    <>
       <TablePageTitle title="Products"
         path={routes.addProducts}
       />
@@ -195,7 +195,7 @@ const ProductList = () => {
           </>
 
       }
-    </Layout>
+    </>
   )
 }
 

@@ -18,7 +18,7 @@ const AddRough = () => {
 
 
     return (
-        <Layout active="rough">
+        <>
             <div className="w-full max-w-4xl mx-10 mt-10">
                 <Tabs activeKey={activeTab} onChange={handleTabChange}>
                     <TabPane tab="Add Rough" key="addRough">
@@ -33,7 +33,7 @@ const AddRough = () => {
                 </Tabs>
             </div>
 
-        </Layout>
+        </>
     )
 }
 
