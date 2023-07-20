@@ -1,8 +1,9 @@
 import { Avatar, Dropdown } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import { routes } from "../routes/route";
-import logo from "../assets/logo.png"
-export const HeaderTitle = () => {
+import { UnorderedListOutlined } from "@ant-design/icons";
+
+export const HeaderTitle = ({ open, setOpen }) => {
     const navigate = useNavigate()
     const items = [
         {
@@ -19,14 +20,16 @@ export const HeaderTitle = () => {
     ]
 
     return (
-        <div className="text-black bg-white font-bold shadow-md flex justify-between py-2 top-0 sticky">
-            <div className=" text-black text-lg px-1 font-bold w-2/12 text-center">
-                   Diamond ERP
-                
+        <div className="text-white bg-black font-bold shadow-md flex justify-between py-2 top-0 sticky">
+            <div className="flex items-center">
+             <UnorderedListOutlined className='ml-2 text-lg pb-1' onClick={() =>setOpen(!open)}/> 
+                <div className="text-lg px-1 font-semibold text-center ml-3">
+                    Diamond ERP
+                </div>
             </div>
-            <div className="flex justify-end me-2 w-10/12">
+            <div className="flex justify-end me-2 w-9/12">
                 <div className="flex justify-center items-center">
-                    <div className="me-2 text-pink">
+                    <div className="me-2">
                         admin
                     </div>
                     <div>
@@ -39,7 +42,7 @@ export const HeaderTitle = () => {
                                 pointAtCenter: true,
                             }}
                         >
-                            <Avatar className="text-white bg-pink font-bold text-lg cursor-pointer">A</Avatar>
+                            <Avatar className="text-black bg-white font-bold text-lg cursor-pointer">A</Avatar>
 
                         </Dropdown>
                     </div>

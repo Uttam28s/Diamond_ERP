@@ -4,6 +4,7 @@ import { categoryServicesApi } from '../service/categoryServices'
 import { productServicesApi } from '../service/productServices';
 import { loginServicesApi } from '../service/loginService';
 import { roughServicesApi } from '../service/roughServices';
+import { adminServiceApi } from '../service/adminService';
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         [loginServicesApi.reducerPath] : loginServicesApi.reducer,
         [categoryServicesApi.reducerPath] : categoryServicesApi.reducer,
 
-        [roughServicesApi.reducerPath] : roughServicesApi.reducer
+        [roughServicesApi.reducerPath] : roughServicesApi.reducer,
+        [adminServiceApi.reducerPath] : adminServiceApi.reducer
     },
 
      middleware: (getDefaultMiddleware) =>
@@ -19,7 +21,9 @@ export const store = configureStore({
             productServicesApi.middleware,
             loginServicesApi.middleware,
             categoryServicesApi.middleware,
-            roughServicesApi.middleware
+
+            roughServicesApi.middleware,
+            adminServiceApi.middleware
         ),
 })
 

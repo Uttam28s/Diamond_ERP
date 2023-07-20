@@ -13,8 +13,6 @@ import { Table } from 'antd';
 const Rough = () => {
   const [pagination, setPagination] = useState({ skip: 0, limit: 10 });
   const { currentData: RoughData, isLoading } = useGetRoughQuery(pagination)
-  console.log("🚀 ~ file: Rough.js:16 ~ Rough ~ RoughData:", RoughData)
-
 
   const [total, setTotal] = useState(0)
 
@@ -108,30 +106,30 @@ const Rough = () => {
   ];
 
   return (
-    <Layout active="rough">
+    <>
       <TablePageTitle title="Rough"
         path={routes.addProducts}
       />
       {
-        isLoading ?
-          <div className="flex justify-center items-center h-[80vh]">
+        isLoading
+          ? <div className="flex justify-center items-center h-[80vh]">
             <Spinner size='large' className="text-4xl" />
           </div>
-          :
-           <CommonTable
-              columns={columns}
-              data={RoughData?.data || []}
-              pagination={pagination}
-              total={total || 0}
-              setPagination={setPagination}
-            />
+          : <CommonTable
+            columns={columns}
+            data={RoughData?.data || []}
+            pagination={pagination}
+            total={total || 0}
+            setPagination={setPagination}
+          />
 
       }
+    </>
 
-    </Layout>
+
   )
 }
 
 export default Rough
 
-      
+
