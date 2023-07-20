@@ -11,7 +11,7 @@ export const Rough = {
     addRough: { method: "POST", url: "/rough/create" },
     deleteRough: { method: "POST", url: (id) => `/delete/mainrough?id=${id}` },
     editRough: { method: "PUT", url: (id) =>  `/edit/mainrough?id=${id}` },
-    getRoughPrefrence: { method: "GET", url: "/common/getList" },
+    getRoughPreference: { method: "GET", url: "/common/getList" },
     getSortingData: { method: "GET", url: "/rough/sorting/view" },
     addSortingData: { method: "POST", url: "/rough/sorting/create" },
     getPolishRough: { method: "GET", url: "/rough/getpolished" }

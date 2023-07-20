@@ -110,7 +110,7 @@ const Rough = () => {
   return (
     <Layout active="rough">
       <TablePageTitle title="Rough"
-        path={routes.addProducts}
+        path={routes.addRough}
       />
       {
         isLoading ?

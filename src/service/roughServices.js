@@ -50,11 +50,20 @@ export const roughServicesApi = createApi({
                     }
                 )
             },
+        }),
+        getRoughList: builder.query({
+            query: () => {
+                return (
+                    {
+                        url: `${Rough.getRoughPreference.url}`,
+                        method: `${Rough.getRoughPreference.method}`                    }
+                )
+            },
         })
     })
 })
 
-export const { useGetRoughQuery , useDeleteRoughMutation, useAddRoughMutation, useEditRoughMutation } = roughServicesApi;
+export const { useGetRoughQuery , useDeleteRoughMutation, useAddRoughMutation, useEditRoughMutation, useGetRoughListQuery } = roughServicesApi;
 
 
         // export const getRoughPrefrence = (id) => (dispatch) =>

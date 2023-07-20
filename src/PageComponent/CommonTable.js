@@ -38,7 +38,7 @@ const CommonTable = ({ columns, data, total, pagination, setPagination }) => {
     return (
         <div className=' w-full mt-5'>
             <div className=' mx-10'>
-                <div className='rounded-md shadow  mb-10 w-full  h-fit'>
+                <div className='rounded-md shadow  mb-6 w-full  h-fit'>
                     <Table columns={columns} dataSource={data || []} size="small" pagination={{ ...pagination, total: total }} onChange={handleTableChange} />
                 </div>
             </div>

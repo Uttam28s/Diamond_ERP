@@ -8,7 +8,6 @@ module.exports = {
       ...require('tailwindcss/colors'),
       yellow: '#FFF212',
       pink: '#EC268F',
-      green: '#009155',
       lightGreen : '#4ecb4e'
     },
     extend: {},

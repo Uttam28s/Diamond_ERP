@@ -4,8 +4,8 @@ import PrimaryButton from '../Component/Button';
 
 export const MainTitle = ({ title }) => {
     return (
-        <div className='flex justify-start ms-10 mt-5'>
-            <div className='font-bold text-2xl text-pink'>{title}</div>
+        <div className='flex justify-start  my-3'>
+            <div className='font-bold text-xl text-black'>{title}</div>
         </div>
     )
 }
@@ -24,7 +24,7 @@ export const Card = ({ title, child, className }) => {
 }
 
 const CommonForm = ({
-    singleBox, onFinish, initialValues, formref, mainTitle, box1title,loading,
+    singleBox, onFinish, initialValues, formRef, mainTitle, box1title, loading,
     children, box2title, box2, box3title, box3, box4title, box4, box5title, box5, id, disabled
 }) => {
     const [form] = Form.useForm();
@@ -36,23 +36,22 @@ const CommonForm = ({
     useEffect(() => {
         form.setFieldsValue(initialValues)
         // eslint-disable-next-line
-    },[initialValues])
+    }, [initialValues])
 
-    React.useImperativeHandle(formref, () => ({
+    React.useImperativeHandle(formRef, () => ({
         resetForm
     }));
 
     return (
-        <div className='px-5 py-3 w-full flex-col justify-center items-center'>
-            <MainTitle title={mainTitle} />
-            <div className='mx-5'>
+        <div className='py-1 w-full flex-col justify-center items-center'>
+            <div className='mx-2'>
                 <Form
                     form={form}
                     layout='vertical'
                     requiredMark={true}
                     onFinish={onFinish}
                     initialValues={initialValues}
-                    ref={formref}
+                    ref={formRef}
                     className='mt-1'
                 >
                     <div className={`${singleBox ? '' : 'flex'} w-full`}>
@@ -91,7 +90,7 @@ const CommonForm = ({
                                 title={id ? "Update" : "Submit"}
                                 disabled={disabled}
                                 loading={loading}
-                                className="me-2  bg-green font-bold text-white hover:!text-white hover:!border-white hover:bg-pink"
+                                className="me-2  font-bold"
                             />
                         </Form.Item>
                     </div>

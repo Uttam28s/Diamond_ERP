@@ -9,6 +9,7 @@ import Dashboard from "./Pages/HomePage/Dashboard";
 import Login from "./Pages/Login/Login";
 import Factory from "./Pages/Factory/Factory";
 import Office from "./Pages/Office/Office";
+import AddRough from "./Pages/Rough/AddRough";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path={routes.login} element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path={routes.rough} element={<Rough />} />
+          <Route path={routes.addRough} element={<AddRough />} />
           <Route path={routes.factory} element={<Factory />} />
           <Route path={routes.office} element={<Office />} />
           <Route path={routes.homePage} element={<Dashboard />} />

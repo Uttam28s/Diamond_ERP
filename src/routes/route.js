@@ -5,6 +5,8 @@ export const routes = {
 
     homePage : "/home",
     rough : "/rough",
+    addRough : "/add-rough",
+
     office : "/office",
     factory : "/factory",
     order : "/order"
