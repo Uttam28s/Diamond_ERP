@@ -18,7 +18,7 @@ export const TablePageTitle = ({ title, path }) => {
                         path &&
                         <div className='font-semibold text-2xl'>
                             <PrimaryButton
-                                className="me-2 bg-green"
+                                className="me-2"
                                 type="primary"
                                 onClick={() => navigate(path)}
                                 title={`Add ${title}`}

@@ -11,7 +11,7 @@ const PrimaryButton = ({ title, size, onClick, disabled, loading, icon, htmlType
       disabled={disabled}
       // loading={loading}
       icon={icon}
-      className={`${className}  bg-green font-bold text-white bg-black hover:!text-black hover:!border-black hover:bg-white`}
+      className={`${className}  font-bold text-white bg-black hover:!text-black hover:!border-black hover:bg-white`}
       htmlType={htmlType}
     >
       <div className='flex justify-evenly'>

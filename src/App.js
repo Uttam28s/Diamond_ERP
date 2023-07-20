@@ -10,10 +10,13 @@ import Login from "./Pages/Login/Login";
 import Factory from "./Pages/Factory/Factory";
 import Office from "./Pages/Office/Office";
 import AddRough from "./Pages/Rough/AddRough";
+import 'animate.css';
+import Layout from "./PageComponent/Layout";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path={routes.login} element={<Login />} />
           <Route path="/" element={<Login />} />
@@ -26,7 +29,7 @@ const App = () => {
           <Route path={routes.products} element={<ProductList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-
+      </Layout>
     </BrowserRouter>
   );
 }
