@@ -2,14 +2,31 @@ import React from 'react'
 import CommonForm, { MainTitle } from '../../PageComponent/CommonForm'
 import { useRef } from 'react'
 import { Col, Input, InputNumber, Row, Form, Select } from 'antd'
+import { useGetRoughListQuery } from '../../service/roughServices'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const AssignRoughForm = () => {
     const formRef = useRef()
-
+    const { currentData: roughPreferenceData } = useGetRoughListQuery()
+    const [roughList, setRoughList] = useState([])
     const onFinish = (value) => {
         console.log("🚀 ~ file: AddRoughForm.js:10 ~ onFinish ~ value:", value)
 
     }
+
+    
+    useEffect(() => {
+        if (roughPreferenceData?.commonGet) {
+            let list = []
+            roughPreferenceData?.commonGet?.caratList.map((value) =>
+                list.push({ value: value._id, label: "R" + value.Id.toString() + "--Carat " + value?.carat.toString() })
+            );
+            setRoughList(list)
+        }
+    }, [roughPreferenceData])
+
+
     return (
         <CommonForm
             onFinish={onFinish}
@@ -26,7 +43,7 @@ const AssignRoughForm = () => {
                     <Select
                         className="cursor-pointer w-full"
                         placeholder={`Select a Rough`}
-                        options={[]}
+                        options={roughList}
                         showSearch
                         filterOption={(input, option) =>
                             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())

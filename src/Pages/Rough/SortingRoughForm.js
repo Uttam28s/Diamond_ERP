@@ -41,24 +41,39 @@ const SortingRoughForm = () => {
     const { currentData: roughPreferenceData } = useGetRoughListQuery()
     const [roughList, setRoughList] = useState([])
     const [selectedRough, setSelectedRough] = useState('')
-    const [totalSortCarat,setTotalSortCarat] = useState(0.00)
-    const [remainCarat,setRemainCarat] = useState(0.00)
-    const [totalAmount,setTotalAmount] = useState(0.00)
-    const [availableCarat,setAvailableCarat] = useState(0.00)
+    const [totalCarat, setTotalCarat] = useState(0)
+    const [totalSortCarat, setTotalSortCarat] = useState(0.00)
+    const [remainCarat, setRemainCarat] = useState(0.00)
+    const [totalAmount, setTotalAmount] = useState(0.00)
+    const [availableCarat, setAvailableCarat] = useState(0.00)
 
     const handleOnChange = (title, value, index) => {
-        console.log("🚀 ~ file: SortingRoughForm.js:50 ~ handleOnChange ~ title, value, index:", title, value, index)
-        let updatedData = data
-        if(title === 'carat'){
-            updatedData[index]['total'] = updatedData[index]['price'] * value 
-        }else if(title === 'price'){
-            updatedData[index]['total'] = updatedData[index]['carat'] * value 
+        let updatedData = [...data]; // Create a shallow copy of the data array
+
+        if (title === 'carat') {
+            updatedData[index]['total'] = updatedData[index]['price'] * value;
+            updatedData[index]['carat'] = value;
+        } else if (title === 'price') {
+            updatedData[index]['total'] = updatedData[index]['carat'] * value;
+            updatedData[index]['price'] = value;
         }
-        setData(updatedData)
+        let totalAmount = 0
+        let sortCarat = 0
+        updatedData?.map((ele) => {
+            totalAmount += ele?.total || 0
+            sortCarat += ele?.carat
+        })
+        setTotalAmount(totalAmount)
+        setTotalSortCarat(sortCarat)
+        setRemainCarat(totalCarat - sortCarat)
+        setAvailableCarat(totalCarat - sortCarat)
+        setData(updatedData);
     }
+    useEffect(() => {
+        setData(dataSource)
+    }, [])
 
 
-    
     useEffect(() => {
         if (roughPreferenceData?.commonGet) {
             let list = []
@@ -94,11 +109,11 @@ const SortingRoughForm = () => {
             title: "Price",
             dataIndex: "price",
             key: "price",
-            render: (value, record) => (
+            render: (value, record, index) => (
                 <InputNumber
                     name={`${record.type}Price`}
                     value={value}
-                    //   onChange={(value) => props.handelOnChange(`${record.type}Price`, value)}
+                    onChange={(value) => handleOnChange(`price`, value, index)}
                     type="number"
                     placeholder="0"
                     className="sorting-table-input"
@@ -131,7 +146,10 @@ const SortingRoughForm = () => {
                             optionFilterProp="children"
                             value={selectedRough}
                             onChange={(value) => {
+                                let temp = roughPreferenceData?.commonGet?.caratList.find((ele) => ele?._id === value)
+                                setTotalCarat(temp?.carat)
                                 setSelectedRough(value)
+                                setRemainCarat(temp?.carat)
                             }}
                             filterOption={(input, option) =>
                                 (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
@@ -143,7 +161,7 @@ const SortingRoughForm = () => {
                     </Col>
 
                     <Col span={4}>
-                        Total Carat : <span className='text-blue-700 font-semibold mx-0.5'>0</span>
+                        Total Carat : <span className='text-blue-700 font-semibold mx-0.5'>{totalCarat}</span>
                     </Col>
                 </Row>
             </div>
@@ -156,25 +174,25 @@ const SortingRoughForm = () => {
             <div className='bg-white mx-10 rounded py-4 px-4 shadow-sm'>
                 <Row className='flex justify-between items-center pb-2'>
                     <Col span={12}>
-                        Total Sorting Carat : <span className='text-red-700 font-semibold mx-0.5'>0</span>
+                        Total Sorting Carat : <span className='text-red-700 font-semibold mx-0.5'>{totalSortCarat}</span>
                     </Col>
 
                     <Col span={12}>
-                        Total Amount : <span className='text-green-700 font-semibold mx-0.5'>0 /-</span>
+                        Total Amount : <span className='text-green-700 font-semibold mx-0.5'>{totalAmount}/-</span>
                     </Col>
                 </Row>
                 <Row className='flex justify-between items-center'>
                     <Col span={12}>
-                        Carat Remaining : <span className='text-blue-700 font-semibold mx-0.5'>0</span>
+                        Carat Remaining : <span className='text-blue-700 font-semibold mx-0.5'>{remainCarat}</span>
                     </Col>
 
                     <Col span={12}>
-                        Available Carat : <span className='text-blue-700 font-semibold mx-0.5'>0</span>
+                        Available Carat : <span className='text-blue-700 font-semibold mx-0.5'>{availableCarat}</span>
                     </Col>
                 </Row>
             </div>
             <div className='mx-10 my-4 flex justify-end'>
-                <PrimaryButton title="Save" />
+                <PrimaryButton title="Save" disabled={remainCarat < 0 || totalCarat !== totalSortCarat} />
             </div>
         </div>
     );

@@ -44,8 +44,6 @@ const AddRoughForm = () => {
             mainTitle={"Add Rough"}
             formRef={formRef}
         >
-            <MainTitle title="Add Rough" />
-            <hr />
             <h5 className="h5-form-label my-2">
                 Rough Id : <span style={{ color: "#0F61FD" }}>#RID001</span>
             </h5>

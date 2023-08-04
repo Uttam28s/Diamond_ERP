@@ -5,7 +5,7 @@ import ScrollToTop from '../helper/ScrollToTop';
 import { useState } from 'react';
 
 const Layout = ({ children, active }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   return (
     <div className='flex flex-col '>
